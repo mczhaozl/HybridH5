@@ -23,18 +23,17 @@
         <a href="javascript:;" :class="{a_active: falg09}" @click="getCourseClass03('付费')">付费</a>
       </li>
     </ul>
-    <div class="resourcecenter-loading" v-show="isLoading"><img src="../assets/imgs/loading.gif"></div>
-    <div class="course_error_info" v-show="courses.length === 0 && !isLoading">
+    <div class="course_error_info" v-show="courses.length === 0">
       <img src="../assets/imgs/search_not_found@2x.png">
       <p>暂时没有你想要的内容噢！</p>
     </div>
-    <div class="course_Info_wrap clearMargin_top" ref="course_Info_wrap" v-show="!isLoading">
+    <div class="course_Info_wrap clearMargin_top" ref="course_Info_wrap">
       <div class="course_Info" v-for="(course, index) in courses" :key="index" @click="goCourseVideo(course.id)">
         <img :src="'http://www.gk0101.com/'+course.coverImg">
         <div class="course_detail">
           <p>{{course.courseName}}</p>
           <span>{{course.totalMic}}节微课</span>
-          <span></span>
+          <span>免费</span>
         </div>
       </div>
     </div>
@@ -65,15 +64,12 @@ export default {
       falg09: false,
       orderBy: 0,
       courseClassify: 0,
-      price: -1,
-      isLoading: false
+      price: -1
     }
   },
   mounted () {
     let URL = 'http://www.gk0101.com/teach/rest/v1/course/getCourseList?pageNo=1&pageSize=10&orderBy=0&courseClassify=0&price=-1&institutionId=10103'
-    this.isLoading = true
     axios.get(URL).then(res => {
-      this.isLoading = false
       const result = res.data.data.result
       this.courses = result
       axios.get('http://www.gk0101.com/teach/rest/v1/course/getCourseList?pageNo=2&pageSize=10&orderBy=0&courseClassify=0&price=-1&institutionId=10103').then(res => {
@@ -178,10 +174,8 @@ export default {
     },
     // 发送Ajax请求的函数
     sendAjax (orderBy, courseClassify, price) {
-      this.isLoading = true
       let URL = `http://www.gk0101.com/teach/rest/v1/course/getCourseList?pageNo=1&pageSize=10&orderBy=${orderBy}&courseClassify=${courseClassify}&price=${price}&institutionId=10103`
       axios.get(URL).then(res => {
-        this.isLoading = false
         let result = res.data.data.result
         this.courses = result
       }).catch(error => {
@@ -260,6 +254,7 @@ export default {
         display: block;
         &:nth-child(2){
           margin-top: 10px;
+          width:106px;
           height:34px;
           font-size:24px;
           font-family:PingFangSC-Regular;
@@ -328,10 +323,6 @@ export default {
       }
     }
   }
-  .resourcecenter .resourcecenter-loading {
-    margin-top: 500px;
-    text-align: center;
-  }
   .footer{
     position: fixed;
     bottom: 0;
@@ -342,13 +333,13 @@ export default {
     justify-content: space-around;
     align-items: flex-end;
     .home{
-      width: 100px;
+      width: 96px;
       text-align: center;
       span{
         display: block;
-        width:100px;
+        width:96px;
         height:28px;
-        font-size:24px;
+        font-size:20px;
         font-family:PingFangSC-Regular;
         font-weight:400;
         color:rgba(50,70,216,1);
@@ -356,20 +347,20 @@ export default {
       }
       &:nth-child(1){
         img{
-          width: 48px;
-          height: 48px;
+          width: 42px;
+          height: 42px;
         }
       }
       &:nth-child(2){
         img{
-          width: 60px;
-          height: 60px;
+          width: 54px;
+          height: 36px;
         }
       }
       &:nth-child(3){
         img{
-          width: 60px;
-          height: 60px;
+          width: 38px;
+          height: 45px;
         }
       }
     }

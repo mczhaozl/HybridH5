@@ -146,15 +146,12 @@ export default {
         params.append('params', JSON.stringify(userInfoObj))
         axios.post(URL, params).then(res => {
           let result = res.data.code
+          const userID = res.data.data.id
           if (result === 0) {
-            axios.post(`http://www.gk0101.com/cms/rest/v1/login/login`, params).then(res => {
-              // 保存用户id
-              const userID = res.data.data.id
-              // 注册成功跳转至首页
-              this.$router.replace('/home')
-              localStorage.setItem('userID', userID)
-              this.errorTipsMsg = ''
-            })
+            // 注册成功跳转至首页
+            this.$router.replace('/home')
+            localStorage.setItem('userID', userID)
+            this.errorTipsMsg = ''
           } else {
             this.errorTipsMsg = this.TipsMsg[2]
             this.confirmImgFlag = true
@@ -202,8 +199,9 @@ export default {
         border-radius:48px;
         outline: none;
         color: #333333;
+        border:4px solid rgba(226,226,226,1);
         padding-left: 144px;
-        border: 1px solid rgba(153,153,153,1); /*no*/
+        line-height: 96px;
         font-size:34px;
         font-family:PingFangSC-Regular;
         font-weight:400;
@@ -241,11 +239,12 @@ export default {
         width:600px;
         height:96px;
         border-radius:48px;
+        border:4px solid rgba(226,226,226,1);
         font-size:34px;
-        border: 1px solid rgba(153,153,153,1); /*no*/
         font-family:PingFangSC-Regular;
         font-weight:400;
         color:#333333;
+        line-height:96px;
         padding-left: 46px;
         &::-webkit-input-placeholder{
           color: #666666;
@@ -286,7 +285,8 @@ export default {
         color: #333333;
         box-sizing: border-box;
         padding-left: 46px;
-        border: 1px solid rgba(153,153,153,1); /*no*/
+        line-height:96px;
+        border:4px solid rgba(226,226,226,1);
         &::-webkit-input-placeholder{
           color: #666666;
         }
