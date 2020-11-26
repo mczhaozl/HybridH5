@@ -14,8 +14,6 @@ import ChangePsd from '../components/ChangePsd.vue'
 import MyNotices from '../components/MyNotices.vue'
 import NoticeDetail from '../components/NoticeDetail.vue'
 import MyCourse from '../components/MyCourse.vue'
-import ExaminationRegistration from '../components/ExaminationRegistration.vue'
-import MyScore from '../components/MyScore.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -25,16 +23,6 @@ const router = new Router({
       path: '/home',
       component: Home,
       name: 'Home'
-    },
-    {
-      path: '/examinationregistration',
-      component: ExaminationRegistration,
-      name: 'ExaminationRegistration'
-    },
-    {
-      path: '/myscore',
-      component: MyScore,
-      name: 'MyScore'
     },
     {
       path: '/mycourse',
