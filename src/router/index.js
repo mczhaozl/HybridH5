@@ -5,10 +5,9 @@ import ResourceCenter from '../components/ResourceCenter.vue'
 import Mine from '../components/Mine.vue'
 import Search from '../components/Search.vue'
 import Register from '../components/Register.vue'
-import Myinfo from '../components/MyInfo.vue'
 Vue.use(Router)
 
-const router = new Router({
+export default new Router({
   mode: 'history',
   routes: [
     {
@@ -37,22 +36,8 @@ const router = new Router({
       name: 'Search'
     },
     {
-      path: '/myinfo',
-      component: Myinfo,
-      name: 'Myinfo'
-    },
-    {
       path: '/',
       redirect: '/home'
     }
   ]
 })
-router.beforeEach((to, from, next) => {
-  if (to.name === 'Mine') {
-    // 登陆/注册就去用户详情页
-    // if ()
-    // router.replace('/myinfo')
-  }
-  next()
-})
-export default router
