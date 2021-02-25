@@ -4,9 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'lib-flexible/flexible'
-import MintUi from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(MintUi)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
